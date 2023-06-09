@@ -17,7 +17,7 @@ If you need help, contact us via [email](mailto:scicompcourse@byu.edu), [Slack](
 
 ## Lessons
 
-### [Lesson 1](LINK)
+### [Lesson 1](lessons/lesson-1.md)
 ### [Lesson 2](LINK)
 ...
 
