@@ -1,9 +1,12 @@
+[gimmick: math]()
+
+
+
 # Phase 1: Basics
 
-This is the first phase of the [Scientific Computing Course's](https://rc.byu.edu/course) semester-long project. It serves as a good litmus test--if you struggle implementing it once you understand the problem, you're likely to flounder in the rest of the class.
+This is the first phase of the semester-long project. It serves as a good litmus test--if you struggle implementing it once you understand the problem, you're likely to flounder in the rest of the class.
 
 The next few sections explain what the code is doing; if you don't care, feel free to skip to the [pseudocode](#pseudocode) and [assignment](#the-assignment).
-
 
 
 
@@ -14,7 +17,7 @@ Your job is to simulate a simple [damped](https://en.wikipedia.org/wiki/Damping)
 
 $$\ddot u = \nabla^2 u - c \space \dot u$$
 
-...where $c$ is the damping coefficient, $u$ represents displacement from equilibrium, $\dot u$ represents the first derivative of $u$ with respect to time (and $\ddot u$ the second), and $\nabla^2$ is the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator).
+...where \\(c\\) is the damping coefficient, \\(u\\) represents displacement from equilibrium, \\(\dot u\\) represents the first derivative of \\(u\\) with respect to time (and \\(\ddot u\\) the second), and \\(\nabla^2\\) is the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator).
 
 
 
@@ -27,17 +30,17 @@ $$v_I^{(t+dt)} = (1-dt \space c) v_I^{(t)} + dt \space \nabla^2 u_I^{(t)}$$
 
 $$u_I^{(t+dt)} = u_I^{(t)} + dt \space v_I^{(t+dt)}$$
 
-...where $c$ is again the damping coefficient, $u$ is the displacement, $v$ is its velocity, $I$ is an index in the discretized grid, $t$ is the simulation time, and $dt$ is the time step.
+...where \\(c\\) is again the damping coefficient, \\(u\\) is the displacement, \\(v\\) is its velocity, \\(I\\) is an index in the discretized grid, \\(t\\) is the simulation time, and \\(dt\\) is the time step.
 
 We [approximate the Laplacian](https://en.wikipedia.org/wiki/Discrete_Laplace_operator#Finite_differences) as:
 
 $$\nabla^2 x_{I} \approx \left( \sum_n^{2N} \frac{x_{n}}{2} \right) - N \space x$$
 
-...where $N$ is the dimension of the problem and each of $n$ are indices adjacent to $I$ in positive and negative directions along each axis; in two dimensions this is:
+...where \\(N\\) is the dimension of the problem and each of \\(n\\) are indices adjacent to \\(I\\) in positive and negative directions along each axis; in two dimensions this is:
 
 $$\nabla^2 x_{i,j} \approx \frac{x_{i,j-1}+x_{i,j+1}+x_{i-1,j}+x_{i+1,j}}{2} - 2 \space x_{i,j}$$
 
-...for cell $(i, j)$.
+...for cell \\((i, j)\\).
 
 
 
@@ -61,7 +64,7 @@ Division is by 4 rather than two because both ends of each spring are free; it c
 
 ## The simulation
 
-Given a damping coefficient of 0.01, an initial grid of size 25x50 with [edges fixed at zero](https://en.wikipedia.org/wiki/Dirichlet_boundary_condition), displacement $u$ initialized to all zeros, and the interior of displacement velocity $v$ initialized to 0.1:
+Given a damping coefficient of 0.01, a time step of 0.01, an initial grid of size 25x50 with [edges fixed at zero](https://en.wikipedia.org/wiki/Dirichlet_boundary_condition), displacement $u$ initialized to all zeros, and the interior of displacement velocity $v$ initialized to 0.1:
 
 $$u_0 = \begin{bmatrix}
     0      & \dots  & 0      \\
@@ -112,6 +115,7 @@ As you can see, once the initial conditions are set, each cell simply seeks the 
 
 ```c++
 // Initialize
+dt = 0.01
 m = 25
 n = 50
 c = 0.01
