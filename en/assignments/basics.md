@@ -1,8 +1,6 @@
-[gimmick: math]()
-
-
-
 # Phase 1: Basics
+
+[gimmick: math]()
 
 This is the first phase of the semester-long project. It serves as a good litmus test--if you struggle implementing it once you understand the problem, you're likely to flounder in the rest of the class.
 
